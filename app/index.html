@@ -26,22 +26,23 @@
 
 
 
-    <div id="sideBar"></div>
+    <div id="blogPosts"></div>
+  
 
 
 
 
 
 
-<script type="text/template" id= 'sidebar-main'>
+<script type="text/template" id= 'blog-posts'>
+  <li class='blog_posts' id='<%= objectId %>'>
+    <a href="#/read/<%= objectId %> ">
+      <div class="header"> <%= title %> by <%= author %></div>
+      <div class="content"><$= content %></div>
+      <div class="rating"><%= ratings %></div>
+    </a>
+  </li>
 
-<a href="#"</a>
-<a href="#">An introduction: Design in 2012</a>
-<a href="#">Relevant figures in design</a>
-<a href="#">Where is design heading?</a>
-<a href="#">Influences</a>
-<a href="#">Video</a>
-<a href="#">Sources</a>
 
 </script>
 
@@ -72,6 +73,7 @@
         <script src="scripts/models/blog_model.js"></script>
         <script src="scripts/routes/blog_route.js"></script>
         <script src="scripts/view/blog_view.js"></script>
+        <script src="scripts/view/add_post_view.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>
