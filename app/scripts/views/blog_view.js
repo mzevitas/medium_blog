@@ -13,6 +13,9 @@
       this.options= options;
       this.render();
 
+      this.collection.off();
+      this.collection.on('sync', this.render, this);
+
       $('#blogPosts').html(this.$el);
     },
 
@@ -21,6 +24,8 @@
 
       return this;
     }
+
+
 
 
 

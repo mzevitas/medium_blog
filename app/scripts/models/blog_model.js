@@ -8,7 +8,7 @@
     defaults: {
       title: '',
       author: '',
-      content: '', //pull from parse.
+      content: '',
       tags: '',
       comments: '',
       ratings: ''
@@ -16,7 +16,6 @@
 
     initialize: function (){
       var b = this.get('title');
-      console.log(b + " is title");
     }
 
   });

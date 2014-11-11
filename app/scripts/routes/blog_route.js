@@ -2,9 +2,11 @@
 
   App.Routers.AppRouter = Parse.Router.extend({
 
-    router: {
+    routes: {
 
       '' : 'home',
+      'add' : 'addPost'
+
 
     },
 
@@ -12,8 +14,13 @@
 
 
       new App.Views.ListPost({ collection: App.posts});
+    },
+
+    addPost: function () {
+      new App.Views.AddPost();
     }
 
   });
+
 
 }());
