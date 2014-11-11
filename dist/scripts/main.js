@@ -16,15 +16,23 @@
     defaults: {
       title: '',
       author: '',
+<<<<<<< HEAD
       content: '', //pull from parse.
+=======
+      content: '',
+>>>>>>> 3c9452207aba7110254ddb3a53d11a3b4378e304
       tags: '',
       comments: '',
       ratings: ''
     },
 
     initialize: function (){
+<<<<<<< HEAD
       var b = this.get('title');
       console.log(b + " is title");
+=======
+      // var b = this.get('title');
+>>>>>>> 3c9452207aba7110254ddb3a53d11a3b4378e304
     }
 
   });
@@ -71,8 +79,11 @@
 
     render: function () {
       this.$el.empty();
+<<<<<<< HEAD
 
       return this;
+=======
+>>>>>>> 3c9452207aba7110254ddb3a53d11a3b4378e304
     }
 
 
