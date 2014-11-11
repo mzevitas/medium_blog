@@ -15,7 +15,8 @@
     },
 
     initialize: function (){
-      // var b = this.get('title');
+      var b = this.get('title');
+      console.log(b + " is title");
     }
 
   });

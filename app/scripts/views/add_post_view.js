@@ -29,7 +29,7 @@
               App.posts.add(p);
               App.router.navigate('', {trigger: true});
             }
-          })
+          });
        }
   });
 }());

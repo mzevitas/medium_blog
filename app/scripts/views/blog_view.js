@@ -18,6 +18,8 @@
 
     render: function () {
       this.$el.empty();
+
+      return this;
     }
 
 
