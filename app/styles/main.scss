@@ -9,18 +9,38 @@ body {
   color: #333;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 600px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
+#full {
   h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+    text-align: center;
+  }
+}
+
+#blogPosts {
+  width: 75%;
+  margin: 0 auto;
+  form {
+    text-align: center;
+    #postTitle {
+      width: 60%;
+      border: none;
+      outline: none;
+      background-color: HSLA(0, 0%, 98%, 1);
+      font-weight: bold;
+      font-size: 25px;
+      padding-bottom: 10px;
+    }
+    textarea {
+      max-width: 60%;
+      width: 60%;
+      border: none;
+      outline: none;
+      background-color: HSLA(0, 0%, 98%, 1);
+    }
+    #postTag {
+      width: 60%;
+      border: none;
+      outline: none;
+      background-color: HSLA(0, 0%, 98%, 1);
+    }
   }
 }
