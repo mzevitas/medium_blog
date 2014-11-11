@@ -24,10 +24,11 @@
             content: $('#postContent').val(),
             tag: $('#postTag').val()
           });
+
           p.save(null, {
-            sucess: function () {
+            success: function () {
               App.posts.add(p);
-              App.router.navigate('', {trigger: true});
+              App.router.navigate('', { trigger: true });
             }
           });
        }

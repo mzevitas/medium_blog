@@ -25,7 +25,7 @@
 
 
 
-
+<a href="#/add" class="add_btn"><button>add post</button></a>
     <div id="blogPosts"></div>
 
 
@@ -35,17 +35,18 @@
     <input type="text" id="postTitle" placeholder="Title" />
     <textarea type="text" id="postContent" placeholder ="Add Content Here..."> </textarea>
     <input type="text" id="postTag" placeholder="Add Tag" />
-  </form>
 
+  <button>Add Post</button>
+</form>
 </script>
 
 
 
 <script type="text/template" id= 'blog-posts'>
   <li class='blog_posts' id='<%= objectId %>'>
-    <a href="#/read/ <%= objectId %> ">
+    <a href="#/ <%= objectId %> ">
       <div class="header"><%= title %> by <%= author %></div>
-      <div class="content"><$= content %></div>
+      <div class="content"><\\$= content %></div>
       <div class="rating"><%= ratings %></div>
     </a>
   </li>
@@ -77,8 +78,8 @@
 
 
         <!-- build:js scripts/main.js -->
-        <script src="scripts/collections/blog_collection.js"></script>
         <script src="scripts/models/blog_model.js"></script>
+        <script src="scripts/collections/blog_collection.js"></script>
         <script src="scripts/routes/blog_route.js"></script>
         <script src="scripts/views/blog_view.js"></script>
         <script src="scripts/views/add_post_view.js"></script>
