@@ -8,7 +8,7 @@
     defaults: {
       title: '',
       author: '',
-      content: '', //pull from parse.
+      content: '',
       tags: '',
       comments: '',
       ratings: ''
