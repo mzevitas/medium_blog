@@ -27,10 +27,17 @@
 
 
     <div id="blogPosts"></div>
-  
 
 
 
+<script type="text/template" id="create-post">
+  <form id="addPost">
+    <input type="text" id="postTitle" placeholder="Title"/>
+    <textarea type="text" id="postContent" placeholder="Add Content Here..."/>
+    <input type="text" id="postTag" placeholder="Add Tag"/>
+  </form>
+
+</script>
 
 
 
@@ -42,8 +49,6 @@
       <div class="rating"><%= ratings %></div>
     </a>
   </li>
-
-
 </script>
 
 
