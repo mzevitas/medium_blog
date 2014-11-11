@@ -6,7 +6,7 @@
 
     events: {},
 
-    template: _.tempate($('#blog-posts').html()),
+    template: _.template($('#blog-posts').html()),
 
     initialize: function (options){
 

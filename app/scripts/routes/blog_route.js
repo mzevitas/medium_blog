@@ -9,7 +9,9 @@
     },
 
     home: function (){
-      
+
+
+      new App.Views.ListPost({ collection: App.posts});
     }
 
   });
