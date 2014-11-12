@@ -26,6 +26,7 @@
 
     <div id="full">
       <a href="#/add" class="add_btn"><button>add post</button></a>
+      <a href="#/signup" class="signup_btn"><button>Sign Up</button></a>
       <a href="#/login" class="login_btn"><button>Login</button></a>
       <a href="#/"><h1>Median</h1></a>
       <div id="blogPosts"></div>
@@ -54,9 +55,18 @@
   </li>
 </script>
 
+<script type="text/template" id='user-signup'>
+  <form id="SignUp">
+    <input id="signupName" type="text" placeholder="Enter User Name" />
+    <input id="signupEmail" type="text" placeholder="Enter Email Address" />
+    <input id="signupPassword" type="text" placeholder="Enter Password" />
+    <button>Sign Up</button>
+  </form>
+</script>
 
 <script type="text/template" id='user-form'>
   <form id="Login">
+    <input id="userName" type="text" placeholder="Enter User Name" />
     <input id="userEmail" type="text" placeholder="Enter Email Address" />
     <input id="password" type="text" placeholder="Enter Password" />
     <button>Log In</button>
@@ -94,6 +104,7 @@
         <script src="scripts/routes/blog_route.js"></script>
         <script src="scripts/views/blog_view.js"></script>
         <script src="scripts/views/add_post_view.js"></script>
+        <script src="scripts/views/signup_view.js"></script>
         <script src="scripts/views/user_view.js"></script>
         <script src="scripts/jquery.autosize.min.js"></script>
         <script src="scripts/main.js"></script>

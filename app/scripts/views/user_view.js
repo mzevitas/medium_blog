@@ -8,7 +8,7 @@
       'submit #Login' : 'userLogin'
     },
 
-    template:  $('#user-form').html(),
+    template:  _.template($('#user-form').html()),
 
     initialize: function () {
       this.render();
@@ -23,12 +23,14 @@
     userLogin: function(e) {
       e.preventDefault();
 
-      var userEmail = $('#userEmail').val();
+      // var userName = $('#userName').val();
+      var username = $('#userName').val();
       var password = $('#password').val();
+      var useremail = $('#userEmail').val();
 
-      Parse.User.logIn(userEmail, password, {
+      Parse.User.logIn(userName, userEmail, password, {
         success: function (user) {
-          App.updateUser();
+          // App.updateUser();
           App.router.navigate('', { trigger: true });
         },
 
