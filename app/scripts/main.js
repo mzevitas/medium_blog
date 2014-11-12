@@ -14,7 +14,8 @@ Parse.initialize("987y8DiFXRHgSkRnchrmgg5tKs0k4vfuj8SG5Qzj", "9Ordnpe294Dr1uzZ14
 
   });
 
-  $('textarea').autosize();
-
+  $(document).ready(function(){
+    $('#postContent').autosize();
+});
 
 }());

@@ -26,7 +26,7 @@
 
     <div id="full">
       <a href="#/add" class="add_btn"><button>add post</button></a>
-      <h1>Site Title</h1>
+      <h1>Median</h1>
       <div id="blogPosts"></div>
     </div>
 
@@ -34,10 +34,10 @@
 
 <script type="text/template" id="create-post">
   <form id="addPost">
+    <button>Add Post</button><br>
     <input type="text" id="postTitle" placeholder="Title" />
     <textarea id="postContent" placeholder="What's on your mind?"></textarea>
     <input type="text" id="postTag" placeholder="Add Tag" /><br>
-    <button>Add Post</button>
   </form>
 </script>
 
@@ -62,7 +62,6 @@
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
-    <script src="../scripts/jquery.autoresize.min.js"></script>
 
     <!-- endbower -->
     <!-- endbuild -->
@@ -86,6 +85,7 @@
         <script src="scripts/routes/blog_route.js"></script>
         <script src="scripts/views/blog_view.js"></script>
         <script src="scripts/views/add_post_view.js"></script>
+        <script src="../scripts/jquery.autosize.min.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>
