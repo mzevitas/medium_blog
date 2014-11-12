@@ -5,7 +5,8 @@
     routes: {
 
       '' : 'home',
-      'add' : 'addPost'
+      'add' : 'addPost',
+      'login' : 'userLogin'
 
 
     },
@@ -17,7 +18,17 @@
     },
 
     addPost: function () {
+      // if(!App.user) return App.router.navigate('login', { trigger: true});
+
       new App.Views.AddPost();
+
+    },
+
+    userLogin: function () {
+      if(App.user) return App.router.navigate('', { trigger: true});
+
+      new App.Views.LoginView();
+
     }
 
   });

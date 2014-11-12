@@ -25,7 +25,8 @@
           var p = new App.Models.Blog({
             title: $('#postTitle').val(),
             content: $('#postContent').val(),
-            tag: $('#postTag').val()
+            tag: $('#postTag').val(),
+            user: App.user
           });
 
           p.save(null, {
