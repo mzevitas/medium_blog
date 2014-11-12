@@ -23,12 +23,11 @@
     userLogin: function(e) {
       e.preventDefault();
 
-      // var userName = $('#userName').val();
       var username = $('#userName').val();
       var password = $('#password').val();
-      var useremail = $('#userEmail').val();
+      // var useremail = $('#userEmail').val();
 
-      Parse.User.logIn(userName, userEmail, password, {
+      Parse.User.logIn(username, password, {
         success: function (user) {
           // App.updateUser();
           App.router.navigate('', { trigger: true });

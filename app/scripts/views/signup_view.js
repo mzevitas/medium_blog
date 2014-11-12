@@ -26,7 +26,7 @@
     var user = new Parse.User({
       username: $("#signupName").val(),
       password: $("#signupPassword").val(),
-      email: $("#signupEmail").val(),
+      // email: $("#signupEmail").val(),
       // user.set("password", "#signupPassword");
       });
 
