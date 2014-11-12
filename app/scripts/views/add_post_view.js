@@ -10,10 +10,13 @@
         this.render();
 
         $('#blogPosts').html(this.$el);
+
+        $('#postContent').autosize();
       },
 
       render: function () {
         this.$el.html($('#create-post').html());
+
       },
 
       addPost: function (e) {
@@ -31,6 +34,7 @@
               App.router.navigate('', { trigger: true });
             }
           });
+
        }
   });
 }());
