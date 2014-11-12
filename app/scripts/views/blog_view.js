@@ -2,16 +2,16 @@
 
   App.Views.ListPost = Parse.View.extend ({
     tagName: 'ul',
-    className: '',
+    className: 'published',
 
     events: {},
 
-    template: _.template($('#blog-posts').html()),
+    template: _.template($('#blogposts').html()),
 
     initialize: function (options){
 
       this.options= options;
-      this.render();
+      // this.render();
 
       this.collection.off();
       this.collection.on('sync', this.render, this);
@@ -23,6 +23,7 @@
       this.$el.empty();
 
       return this;
+
     }
 
 
