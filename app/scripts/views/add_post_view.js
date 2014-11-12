@@ -3,7 +3,7 @@
   App.Views.AddPost = Parse.View.extend ({
 
       events: {
-        'submit #addPost' : 'addPost'
+        'click #publish-post' : 'addPost'
       },
 
       initialize: function () {
@@ -11,11 +11,11 @@
 
         $('#blogPosts').html(this.$el);
 
-        $('#postContent').autosize();
+        // $('#postContent').autosize();
       },
 
       render: function () {
-        this.$el.html($('#create-post').html());
+        this.$el.html($('#createpost').html());
 
       },
 
