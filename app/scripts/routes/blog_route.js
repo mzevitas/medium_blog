@@ -5,6 +5,7 @@
     routes: {
 
       '' : 'home',
+      'profile' : 'profile',
       'add' : 'addPost',
       'login' : 'userLogin',
       'signup' : 'userSignUp',
@@ -15,7 +16,12 @@
 
     home: function (){
 
-      new App.Views.ListPost({ collection: App.posts});
+      new App.Views.PublicPost({ collection: App.posts});
+    },
+
+    profile: function (){
+
+      new App.Views.ProfileView({ collection: App.posts });
     },
 
     editPost: function (postID) {

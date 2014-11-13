@@ -13,6 +13,7 @@
 
         $('#blogPosts').html(this.$el);
 
+
         // $('#postContent').autosize();
       },
 
@@ -37,7 +38,7 @@
           p.save(null, {
             success: function () {
               App.posts.add(p);
-              App.router.navigate('', { trigger: true });
+              App.router.navigate('profile', { trigger: true });
             }
           });
 

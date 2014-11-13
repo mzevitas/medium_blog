@@ -1,6 +1,6 @@
 (function () {
 
-  App.Views.ListPost = Parse.View.extend ({
+  App.Views.ProfileView = Parse.View.extend ({
     tagName: 'ul',
     className: 'published',
 
