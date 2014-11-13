@@ -37,19 +37,47 @@
     routes: {
 
       '' : 'home',
-      'add' : 'addPost'
+      'add' : 'addPost',
+      'login' : 'userLogin',
+      'signup' : 'userSignUp',
+      'edit/:postID' : 'editPost'
 
 
     },
 
     home: function (){
 
-
       new App.Views.ListPost({ collection: App.posts});
     },
 
+    editPost: function (postID) {
+
+    if(!App.user) return App.router.navigate('login', { trigger: true});
+
+    var p = App.posts.get(postID);
+    new App.Views.SinglePost({ post: p });
+
+    },
+
     addPost: function () {
+      // if(!App.user) return App.router.navigate('login', { trigger: true});
+
       new App.Views.AddPost();
+
+    },
+
+    userSignUp: function () {
+      if(App.user) return App.router.navigate('', { trigger: true});
+
+      new App.Views.SignUpView();
+
+    },
+
+    userLogin: function () {
+      if(App.user) return App.router.navigate('', { trigger: true});
+
+      new App.Views.LoginView();
+
     }
 
   });
@@ -61,7 +89,7 @@
 
   App.Views.ListPost = Parse.View.extend ({
     tagName: 'ul',
-    className: '',
+    className: 'published',
 
     events: {},
 
@@ -70,22 +98,43 @@
     initialize: function (options){
 
       this.options= options;
-      this.render();
 
       this.collection.off();
-      this.collection.on('sync', this.render, this);
+      this.collection.on('sync', this.postQuery, this);
 
       $('#blogPosts').html(this.$el);
+
+      this.postQuery();
+    },
+
+    postQuery: function () {
+      var self = this;
+
+      var user_post = new Parse.Query(App.Models.Blog);
+      user_post.equalTo('user', App.user);
+      user_post.find({
+        success: function (results) {
+          self.collection = results;
+          self.render();
+        }
+      });
+
     },
 
     render: function () {
+      var self = this;
+
       this.$el.empty();
 
+      var local_collection = this.collection;
+
+      _.each(local_collection, function (p) {
+        self.$el.append(self.template(p.toJSON()));
+      });
+
       return this;
+
     }
-
-
-
 
 
   });
@@ -97,18 +146,22 @@
   App.Views.AddPost = Parse.View.extend ({
 
       events: {
-        'submit #addPost' : 'addPost'
+        'click #publish-post' : 'addPost'
       },
+
+      template: _.template($('#create-post').html()),
 
       initialize: function () {
         this.render();
 
         $('#blogPosts').html(this.$el);
 
-        $('#postContent').autosize();
+        // $('#postContent').autosize();
       },
 
       render: function () {
+        this.$el.empty();
+
         this.$el.html($('#create-post').html());
 
       },
@@ -118,8 +171,10 @@
 
           var p = new App.Models.Blog({
             title: $('#postTitle').val(),
+            author: $('#postAuthor').val(),
             content: $('#postContent').val(),
-            tag: $('#postTag').val()
+            tags: $('#postTag').val(),
+            user: App.user
           });
 
           p.save(null, {
@@ -131,6 +186,158 @@
 
        }
   });
+}());
+
+(function () {
+
+  App.Views.SinglePost = Parse.View.extend({
+
+    tagName: 'ul',
+    className: 'singlePost',
+
+    events: {
+
+      'submit #editPost' : 'editPost',
+
+    },
+
+    template: _.template($('#single-posts').html()),
+
+    initialize: function (options) {
+      this.options = options;
+
+      this.render();
+
+      // $('').empty();
+
+      $('#blogPosts').html(this.$el);
+
+    },
+
+    render: function () {
+      this.$el.empty();
+
+      this.$el.html(this.template(this.options.post.toJSON()));
+    },
+
+    editPost:  function (e) {
+      e.preventDefault();
+
+      this.options.post.set({
+        title: $('#update_title').val(),
+        content: $('#update_content').val(),
+        tags: $('#update_tags').val()
+
+      });
+
+      this.options.post.save();
+
+      App.router.navigate('', { trigger: true});
+
+    }
+
+
+
+  });
+
+
+}());
+
+(function () {
+
+  App.Views.SignUpView = Parse.View.extend({
+
+    className: 'signingup',
+
+    events: {
+      'submit #SignUp' : 'userSignUp'
+    },
+
+    template: _.template($('#user-signup').html()),
+
+    initialize: function () {
+      this.render();
+
+      $('#blogPosts').html(this.$el);
+    },
+
+    render: function () {
+      this.$el.html(this.template);
+    },
+
+    userSignUp: function (e) {
+      e.preventDefault();
+
+    var user = new Parse.User({
+      username: $("#signupName").val(),
+      password: $("#signupPassword").val(),
+      // email: $("#signupEmail").val(),
+      // user.set("password", "#signupPassword");
+      });
+
+      // user.signUp();
+
+      user.signUp(null, {
+        success: function(user) {
+          // Hooray! Let them use the app now.
+          App.router.navigate('#/login', { trigger: true });
+        },
+        error: function(user, error) {
+          // Show the error message somewhere and let the user try again.
+          alert("Error: " + error.message);
+        }
+      });
+    }
+
+  });
+
+}());
+
+(function () {
+
+  App.Views.LoginView = Parse.View.extend({
+
+    className: 'loggingIn',
+
+    events: {
+      'submit #Login' : 'userLogin'
+    },
+
+    template:  _.template($('#user-form').html()),
+
+    initialize: function () {
+      this.render();
+
+      $('#blogPosts').html(this.$el);
+    },
+
+    render: function () {
+      this.$el.html(this.template);
+    },
+
+    userLogin: function(e) {
+      e.preventDefault();
+
+      var username = $('#userName').val();
+      var password = $('#password').val();
+      // var useremail = $('#userEmail').val();
+
+      Parse.User.logIn(username, password, {
+        success: function (user) {
+          App.updateUser();
+          App.router.navigate('', { trigger: true });
+        },
+
+        error: function (user, error) {
+          alert("Error: " + error.message);
+        }
+      });
+
+    }
+
+
+  });
+
 }());
 
 /*!
@@ -156,5 +363,28 @@ Parse.initialize("987y8DiFXRHgSkRnchrmgg5tKs0k4vfuj8SG5Qzj", "9Ordnpe294Dr1uzZ14
 
   });
 
+  // Log Out
+  $('#logOut').on('click', function (e) {
+    e.preventDefault();
+
+    Parse.User.logOut();
+    App.updateUser();
+    App.router.navigate('login', {trigger: true});
+  });
+
+    // Update User
+  App.updateUser = function (){
+    App.user = Parse.User.current();
+    var currUsr;
+    if (App.user == null){
+      currUsr = '';
+      $('#logOut').text('Log In');
+    } else {
+      currUsr = 'Welcome ' + App.user.attributes.username;
+      $('#logOut').text('Log Out');
+    }
+    $('#loggedIn').html(currUsr);
+  };
+  App.updateUser();
 
 }());
