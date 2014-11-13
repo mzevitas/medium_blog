@@ -9,7 +9,8 @@
       'add' : 'addPost',
       'login' : 'userLogin',
       'signup' : 'userSignUp',
-      'edit/:postID' : 'editPost'
+      'edit/:postID' : 'editPost',
+      'read/:postId' : 'readPost'
 
 
     },
@@ -34,6 +35,13 @@
 
       var p = App.posts.get(postID);
       new App.Views.SinglePost({ post: p });
+
+    },
+    readPost: function (postID) {
+
+
+      var p = App.posts.get(postID);
+      new App.Views.ReadPost({ post: p });
 
     },
 
