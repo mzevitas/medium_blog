@@ -12,12 +12,21 @@ body {
 #full {
   h1 {
     text-align: center;
+    color: black;
+    text-decoration: none;
   }
 }
 
+li {
+  list-style-type: none;
+}
+
 #blogPosts {
-  width: 75%;
-  margin: 0 auto;
+  width: 60%;
+  padding: 15px;
+  margin-right: 170px;
+  float: right;
+
   form {
     text-align: center;
     #postTitle {
@@ -28,6 +37,7 @@ body {
       font-weight: bold;
       font-size: 25px;
       padding-bottom: 10px;
+
     }
     textarea {
       max-width: 60%;
@@ -44,4 +54,14 @@ body {
       background-color: HSLA(0, 0%, 98%, 1);
     }
   }
+}
+
+
+aside {
+  width: 25%;
+  float: left;
+}
+.header {
+  border-top: 1px solid hsla(221,16%,61%,0.5);
+
 }
