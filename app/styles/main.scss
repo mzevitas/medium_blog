@@ -26,10 +26,9 @@ li {
   padding: 15px;
   margin-right: 170px;
   float: right;
-
-  form {
+  #addPost, #editPost {
     text-align: center;
-    #postTitle {
+    #postTitle, #update_title {
       width: 60%;
       border: none;
       outline: none;
@@ -37,9 +36,13 @@ li {
       font-weight: bold;
       font-size: 25px;
       padding-bottom: 10px;
-
     }
-    textarea {
+    #postAuthor, #update_author {
+      border: none;
+      outline: none;
+      background-color: HSLA(0, 0%, 98%, 1);
+    }
+    #postContent, #update_content {
       max-width: 60%;
       width: 60%;
       border: none;
@@ -47,7 +50,7 @@ li {
       background-color: HSLA(0, 0%, 98%, 1);
       height: 300px;
     }
-    #postTag {
+    #postTag, #update_tag {
       width: 60%;
       border: none;
       outline: none;

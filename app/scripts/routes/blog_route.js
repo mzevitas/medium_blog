@@ -16,8 +16,6 @@
 
     home: function (){
 
-      if(!App.user) return App.router.navigate('login', { trigger: true});
-
       new App.Views.PublicPost({ collection: App.posts});
     },
 
@@ -38,7 +36,7 @@
     },
 
     addPost: function () {
-      // if(!App.user) return App.router.navigate('login', { trigger: true});
+      if(!App.user) return App.router.navigate('login', { trigger: true});
 
       new App.Views.AddPost();
 
