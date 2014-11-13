@@ -62,7 +62,7 @@
 
 <script type="text/template" id='public-blog-posts'>
   <li class='public_blog_posts' id='<%= objectId %>'>
-    <a href='<%= objectId %>'>
+    <a href='#/read/<%= objectId %>'>
       <div class="header"><%= title %> by <%= author %></div>
 
       <div class="content"><%= content %></div>
@@ -85,6 +85,20 @@
     </a>
   </li>
 </script>
+
+
+<script type="text/template" id='read-blog-posts'>
+  <li class='read_blog_posts' id='<%= objectId %>'>
+    <a href='<%= objectId %>'>
+      <div class="header"><%= title %> by <%= author %></div>
+      <div class="content"><%= content %></div>
+      <div class="tags"><%= tags %></div>
+
+    </a>
+  </li>
+</script>
+
+
 
 <script type="text/template" id='single-posts'>
   <li class='blog_posts' id='<%= objectId %>'>
@@ -148,6 +162,7 @@
         <script src="scripts/views/profile_blog_view.js"></script>
         <script src="scripts/views/add_post_view.js"></script>
         <script src="scripts/views/single_post_view.js"></script>
+        <script src="scripts/views/read_post_view.js"></script>
         <script src="scripts/views/signup_view.js"></script>
         <script src="scripts/views/user_view.js"></script>
         <script src="scripts/jquery.autosize.min.js"></script>
