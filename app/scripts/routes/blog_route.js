@@ -7,15 +7,24 @@
       '' : 'home',
       'add' : 'addPost',
       'login' : 'userLogin',
-      'signup' : 'userSignUp'
+      'signup' : 'userSignUp',
+      'edit/:postID' : 'editPost'
 
 
     },
 
     home: function (){
 
-
       new App.Views.ListPost({ collection: App.posts});
+    },
+
+    editPost: function (postID) {
+
+    if(!App.user) return App.router.navigate('login', { trigger: true});
+
+    var p = App.posts.get(postID);
+    new App.Views.SinglePost({ post: p });
+
     },
 
     addPost: function () {
