@@ -10,10 +10,12 @@ body {
 }
 
 #full {
+  a {
+    text-decoration: none;
+  }
   h1 {
     text-align: center;
     color: black;
-    text-decoration: none;
   }
 }
 
@@ -74,17 +76,24 @@ li {
   }
   .header-author {
     float: right;
-    margin-top: 10px;
+    margin-top: 12px;
   }
   .content {
     display: inline-block;
     overflow: hidden;
     margin-top: 7px;
     height: 20px;
+    width: 75%;
   }
   .tags{
     display: inline-block;
     margin: 3px 0 5px 0;
+  }
+  img {
+    float: right;
+    width: 80px;
+    margin-top: -29px;
+    border-radius: 60px;
   }
 }
 
