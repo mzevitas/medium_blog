@@ -23,6 +23,8 @@
 
       $('#blogPosts').html(this.$el);
 
+      $('textarea').autosize();
+
     },
 
     render: function () {
@@ -44,7 +46,7 @@
 
       this.options.post.save();
 
-      App.router.navigate('', { trigger: true});
+      App.router.navigate('profile', { trigger: true});
 
     },
 

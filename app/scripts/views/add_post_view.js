@@ -3,7 +3,8 @@
   App.Views.AddPost = Parse.View.extend ({
 
       events: {
-        'click #publish-post' : 'addPost'
+        'click #publish-post' : 'addPost',
+        'click #save-draft' : 'saveDraft'
       },
 
       template: _.template($('#create-post').html()),
@@ -13,8 +14,7 @@
 
         $('#blogPosts').html(this.$el);
 
-
-        $('#postContent').autosize();
+        $('textarea').autosize();
       },
 
       render: function () {
@@ -42,6 +42,25 @@
             }
           });
 
+       },
+
+       saveDraft: function (e) {
+         e.preventDefault();
+
+         var p = new App.Models.Blog({
+           title: $('#postTitle').val(),
+           author: $('#postAuthor').val(),
+           content: $('#postContent').val(),
+           tags: $('#postTag').val(),
+           user: App.user
+         });
+
+         p.save(null, {
+           success: function () {
+             App.posts.add(p);
+             App.router.navigate('profile', { trigger: true });
+           }
+         });
        }
   });
 }());

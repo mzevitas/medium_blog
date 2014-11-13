@@ -11,7 +11,8 @@
       content: '',
       tags: '',
       comments: '',
-      ratings: ''
+      ratings: '',
+      user: ''
     },
 
     initialize: function (){

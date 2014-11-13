@@ -48,10 +48,9 @@
 
 
 <script type="text/template" id="create-post">
-
   <form id="addPost">
     <input type="text" id="postTitle" placeholder="Title" />
-    <input type="text" id="postAuthor" placeholder="Author" />
+    <input type="text" id="postAuthor" placeholder="Author" >
     <textarea id="postContent" placeholder="What's on your mind?"></textarea>
     <input type="text" id="postTag" placeholder="Add Tag" /><br>
     <button id="publish-post">Publish Post</button>
@@ -59,14 +58,12 @@
   </form>
 </script>
 
-
 <script type="text/template" id='public-blog-posts'>
   <li class='public_blog_posts' id='<%= objectId %>'>
     <a href='#/read/<%= objectId %>'>
-      <div class="header"><%= title %> by <%= author %></div>
-
+      <div class="header-title"><%= title %></div>
+      <div class="header-author"><%= author %></div>
       <div class="content"><%= content %></div>
-
       <div class="rating"><%= ratings %></div>
       <div class="tags"><%= tags %></div>
     </a>
@@ -76,10 +73,9 @@
 <script type="text/template" id='blog-posts'>
   <li class='blog_posts' id='<%= objectId %>'>
     <a href='#/edit/<%= objectId %>'>
-      <div class="header"><%= title %> by <%= author %></div>
-
+      <div class="header-title"><%= title %></div>
+      <div class="header-author"><%= author %></div>
       <div class="content"><%= content %></div>
-
       <div class="rating"><%= ratings %></div>
       <div class="tags"><%= tags %></div>
     </a>
@@ -89,12 +85,12 @@
 
 <script type="text/template" id='read-blog-posts'>
   <li class='read_blog_posts' id='<%= objectId %>'>
-    <a href='<%= objectId %>'>
-      <div class="header"><%= title %> by <%= author %></div>
+    <div id='<%= objectId %>'>
+      <div class="header-title"><%= title %></div>
+      <div class="header-author"><%= author %></div>
       <div class="content"><%= content %></div>
       <div class="tags"><%= tags %></div>
-
-    </a>
+    </div>
   </li>
 </script>
 
@@ -103,7 +99,7 @@
 <script type="text/template" id='single-posts'>
   <li class='blog_posts' id='<%= objectId %>'>
     <form id="editPost">
-      <input type="text" value="<%= title %>" id="update_title">
+      <input type="text" value="<%= title %>" id="update_title" placeholder="Title">
       <input type="text" value="<%= author %>" id="update_author">
       <textarea id="update_content"><%= content %></textarea>
       <input type="text" value="<%= tags %>" id="update_tag">

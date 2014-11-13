@@ -10,7 +10,8 @@
       'login' : 'userLogin',
       'signup' : 'userSignUp',
       'edit/:postID' : 'editPost',
-      'read/:postId' : 'readPost'
+      'read/:postID' : 'readPost',
+      'save/:postID' : 'saveDraft'
 
 
     },
@@ -47,6 +48,13 @@
       if(!App.user) return App.router.navigate('login', { trigger: true});
 
       new App.Views.AddPost();
+
+    },
+
+    saveDraft: function () {
+      if(!App.user) return App.router.navigate('', { trigger: false});
+
+      // new App.Views.AddPost();
 
     },
 
