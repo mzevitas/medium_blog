@@ -36,9 +36,10 @@
 
 
 
-<script type="text/template" id="createpost">
+<script type="text/template" id="create-post">
   <form id="addPost">
     <input type="text" id="postTitle" placeholder="Title" />
+    <input type="text" id="postAuthor" placeholder="Author" />
     <textarea id="postContent" placeholder="What's on your mind?"></textarea>
     <input type="text" id="postTag" placeholder="Add Tag" /><br>
     <button id="publish-post">Publish Post</button>
@@ -48,13 +49,25 @@
 
 
 
-<script type="text/template" id='blogposts'>
+<script type="text/template" id='blog-posts'>
   <li class='blog_posts' id='<%= objectId %>'>
     <a href='<%= objectId %>'>
       <div class="header"><%= title %> by <%= author %></div>
       <div class="content"><%= content %></div>
       <div class="rating"><%= ratings %></div>
+      <div class="tags"><%= tags %></div>
     </a>
+  </li>
+</script>
+
+<script type="text/template" id='single-posts'>
+  <li>
+    <form id="editPost">
+      <input type="text" value="<%= title %>" id="update_title">
+      <input type="text" value="<%= content %>" id="update_content">
+      <input type="text" value="<%= tags %>" id="update_tag">
+      <button id="update_btn">Update Post</button>
+    </form>
   </li>
 </script>
 
@@ -105,6 +118,7 @@
         <script src="scripts/routes/blog_route.js"></script>
         <script src="scripts/views/blog_view.js"></script>
         <script src="scripts/views/add_post_view.js"></script>
+        <script src="scripts/views/single_post_view.js"></script>
         <script src="scripts/views/signup_view.js"></script>
         <script src="scripts/views/user_view.js"></script>
         <script src="scripts/jquery.autosize.min.js"></script>

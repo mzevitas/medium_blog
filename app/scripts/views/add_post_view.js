@@ -6,6 +6,8 @@
         'click #publish-post' : 'addPost'
       },
 
+      template: _.template($('#create-post').html()),
+
       initialize: function () {
         this.render();
 
@@ -15,7 +17,9 @@
       },
 
       render: function () {
-        this.$el.html($('#createpost').html());
+        this.$el.empty();
+
+        this.$el.html($('#create-post').html());
 
       },
 
@@ -24,8 +28,9 @@
 
           var p = new App.Models.Blog({
             title: $('#postTitle').val(),
+            author: $('#postAuthor').val(),
             content: $('#postContent').val(),
-            tag: $('#postTag').val(),
+            tags: $('#postTag').val(),
             user: App.user
           });
 
