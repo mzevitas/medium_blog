@@ -16,20 +16,24 @@
 
     home: function (){
 
+      if(!App.user) return App.router.navigate('login', { trigger: true});
+
       new App.Views.PublicPost({ collection: App.posts});
     },
 
     profile: function (){
+
+      if(!App.user) return App.router.navigate('login', { trigger: true});
 
       new App.Views.ProfileView({ collection: App.posts });
     },
 
     editPost: function (postID) {
 
-    if(!App.user) return App.router.navigate('login', { trigger: true});
+      if(!App.user) return App.router.navigate('login', { trigger: true});
 
-    var p = App.posts.get(postID);
-    new App.Views.SinglePost({ post: p });
+      var p = App.posts.get(postID);
+      new App.Views.SinglePost({ post: p });
 
     },
 

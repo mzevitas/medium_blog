@@ -14,7 +14,7 @@
         $('#blogPosts').html(this.$el);
 
 
-        // $('#postContent').autosize();
+        $('#postContent').autosize();
       },
 
       render: function () {

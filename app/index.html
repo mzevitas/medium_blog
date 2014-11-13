@@ -75,7 +75,7 @@
 
 <script type="text/template" id='blog-posts'>
   <li class='blog_posts' id='<%= objectId %>'>
-    <a href='<%= objectId %>'>
+    <a href='#/editPost/<%= objectId %>'>
       <div class="header"><%= title %> by <%= author %></div>
 
       <div class="content"><%= content %></div>
@@ -87,12 +87,14 @@
 </script>
 
 <script type="text/template" id='single-posts'>
-  <li>
+  <li class='blog_posts' id='<%= objectId %>'>
     <form id="editPost">
       <input type="text" value="<%= title %>" id="update_title">
+      <input type="text" value="<%= author %>" id="update_author">
       <input type="text" value="<%= content %>" id="update_content">
       <input type="text" value="<%= tags %>" id="update_tag">
       <button id="update_btn">Update Post</button>
+      <button id="delete">Delete Post</button>
     </form>
   </li>
 </script>

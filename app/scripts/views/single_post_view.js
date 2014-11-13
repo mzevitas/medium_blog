@@ -8,6 +8,7 @@
     events: {
 
       'submit #editPost' : 'editPost',
+      'click #delete' : 'deletePost'
 
     },
 
@@ -18,7 +19,7 @@
 
       this.render();
 
-      // $('').empty();
+      // $('#blogForm').empty();
 
       $('#blogPosts').html(this.$el);
 
@@ -35,8 +36,9 @@
 
       this.options.post.set({
         title: $('#update_title').val(),
+        author: $('#update_author').val(),
         content: $('#update_content').val(),
-        tags: $('#update_tags').val()
+        tags: $('#update_tag').val()
 
       });
 
@@ -44,6 +46,14 @@
 
       App.router.navigate('', { trigger: true});
 
+    },
+
+    deletePost: function (e) {
+      e.preventDefault();
+
+      this.options.post.destroy();
+
+      App.router.navigate('profile', { trigger: true});
     }
 
 
