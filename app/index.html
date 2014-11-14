@@ -86,9 +86,8 @@
 
 
 <script type="text/template" id="commentTemp">
-      <li><%= comments %></li>
+      <li><%= commentText %></li>
     </script>
-
 
 <script type="text/template" id='read-blog-posts'>
   <li class='read_blog_posts' id='<%= objectId %>'>
@@ -97,16 +96,15 @@
       <div class="header-author"><%= author %></div>
       <div class="content"><%= content %></div>
       <div class="tags"><%= tags %></div>
-    </div>
+
 
   <form id="addComment">
           <textarea id="commentText" placeholder="Add Your Comments"></textarea>
-          <button id='commentBtn'>Add Comment</button>
+       <button>Add Comment</button>
         </form>
 
-    <div class="comment"><%= comments %></div>
 
-   </div>
+  </div>
   </li>
 </script>
 
@@ -169,6 +167,7 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/models/blog_model.js"></script>
+        <script src="scripts/models/comment_model.js"></script>
         <script src="scripts/collections/blog_collection.js"></script>
         <script src="scripts/routes/blog_route.js"></script>
         <script src="scripts/views/public_blog_view.js"></script>

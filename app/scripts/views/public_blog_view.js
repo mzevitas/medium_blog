@@ -5,7 +5,7 @@
     className: 'public_published',
 
     events: {
-      'submit #commentText' : 'addComment'
+      
     },
 
     template: _.template($('#public-blog-posts').html()),
