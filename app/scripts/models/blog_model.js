@@ -11,8 +11,6 @@
       content: '',
       tags: '',
       draft: '',
-      comments: '',
-      ratings: '',
       user: ''
     },
 

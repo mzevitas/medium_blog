@@ -60,6 +60,8 @@ body {
     #postTag, #update_tag {
       width: 60%;
       border: none;
+      outline: none;
+      background-color: HSLA(0, 0%, 98%, 1);
     }
     #postDraft {
       display: none;
