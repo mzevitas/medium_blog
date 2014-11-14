@@ -10,20 +10,20 @@ body {
 }
 
 #full {
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+  }
   a {
     text-decoration: none;
   }
-  h1 {
-    text-align: center;
-    color: black;
+  li {
+    list-style-type: none;
   }
 }
 
-li {
-  list-style-type: none;
-}
-
-#blogPosts, {
+#blogPosts {
   width: 60%;
   padding: 15px;
   margin-right: 170px;
@@ -34,6 +34,7 @@ li {
   }
   #addPost, #editPost {
     text-align: center;
+    }
     #postTitle, #update_title {
       width: 60%;
       border: none;
@@ -59,11 +60,8 @@ li {
     #postTag, #update_tag {
       width: 60%;
       border: none;
-      outline: none;
-      background-color: HSLA(0, 0%, 98%, 1);
     }
   }
-}
 
 .public_blog_posts, .blog_posts {
   border-bottom: 1px solid black;
@@ -95,7 +93,24 @@ aside {
   width: 25%;
   float: left;
 }
+
 .header {
   border-top: 1px solid hsla(221,16%,61%,0.5);
+}
 
+ button {
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 150px;
+  color: black;
+  border-radius: 7px;
+  text-shadow: 1px 1px 1px 1px white;
+  outline: none;
+  
+  &:hover {
+    background-color: hsla(24,56%,52%,1);
+    color: white;
+
+  }
 }
