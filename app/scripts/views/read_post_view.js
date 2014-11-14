@@ -7,7 +7,8 @@
 
     events: {
 
-      'submit #readPost' : 'readPost'
+      // 'submit #readPost' : 'readPost',
+      'click #commentBtn' : 'addComment'
 
 
     },
@@ -36,7 +37,45 @@
 
 
       App.router.navigate('', { trigger: true});
+
+
+  var commentTemplate = _.template($('#commentTemp').html());
+      var comments_query = new Parse.Query(App.Models.Blog);
+      comments_query.equalTo('parent', this.options.post);
+
+      this.$el.append('<ul class="comments"></ul>');
+
+      comments_query.find({
+        success: function (results) {
+
+          _.each(results, function(comment) {
+            $('ul.comments').append(commentTemp(comment.toJSON()));
+          })
+
+        }
+      })
+
+    },
+
+    addComment: function (e) {
+      e.preventDefault();
+
+      var comment = new App.Models.Blog({
+
+        commentText: $('#commentText').val(),
+        parent: this.options.post
+
+      });
+
+      comment.save(null, {
+        success: function () {
+          App.posts.add(comment);
+          console.log('Comment has been added');
+          App.router.navigate('', {trigger: true});
+        }
+      });
     }
+
 
 
 

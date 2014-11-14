@@ -86,7 +86,7 @@
 
 
 <script type="text/template" id="commentTemp">
-      <li><%= commentText %></li>
+      <li><%= comments %></li>
     </script>
 
 
@@ -101,11 +101,15 @@
 
   <form id="addComment">
           <textarea id="commentText" placeholder="Add Your Comments"></textarea>
-          <button>Add Comment</button>
+          <button id='commentBtn'>Add Comment</button>
         </form>
 
+    <div class="comment"><%= comments %></div>
+
+   </div>
   </li>
 </script>
+
 
 
 
