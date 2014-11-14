@@ -14,6 +14,7 @@
       'save/:postID' : 'saveDraft'
 
 
+
     },
 
     home: function (){
@@ -37,7 +38,7 @@
 
     },
     readPost: function (postID) {
-
+      // if(!App.user) return App.router.navigate('read', { trigger: true});
 
       var p = App.posts.get(postID);
       new App.Views.ReadPost({ post: p });
