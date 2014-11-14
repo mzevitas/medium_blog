@@ -5,7 +5,7 @@
     className: 'public_published',
 
     events: {
-      
+
     },
 
     template: _.template($('#public-blog-posts').html()),
@@ -26,6 +26,14 @@
     var self = this;
 
     var all_post = new Parse.Query(App.Models.Blog);
+    all_post.notEqualTo("draft", "DRAFT");
+
+    // if (all_post == "DRAFT") {
+    //   ('li').hide();
+    // }
+    // else {
+    //     ('li').show();
+    //   }
 
     all_post.find({
       success: function (results) {
@@ -33,6 +41,7 @@
         self.render();
       }
     });
+
 
   },
 
@@ -48,7 +57,6 @@
     });
 
     return this;
-
 
 }
 

@@ -32,6 +32,7 @@
             author: $('#postAuthor').val(),
             content: $('#postContent').val(),
             tags: $('#postTag').val(),
+            draft: $('#postDraft').val(),
             user: App.user
           });
 
@@ -63,6 +64,6 @@
            }
          });
 
-       }
+      }
   });
 }());

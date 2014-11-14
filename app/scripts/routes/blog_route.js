@@ -53,7 +53,7 @@
     },
 
     saveDraft: function () {
-      if(!App.user) return App.router.navigate('profile', { trigger: false});
+      if(!App.user) return App.router.navigate('profile', { trigger: true});
 
       // new App.Views.AddPost();
 
