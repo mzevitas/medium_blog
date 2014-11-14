@@ -13,6 +13,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <link href='http://fonts.googleapis.com/css?family=Exo+2:700,300italic,200,900italic,500italic,800,300,600italic,500,800italic,900,100italic,200italic,600,700italic,400,100,400italic' rel='stylesheet' type='text/css'>
+
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -26,7 +28,7 @@
 
 
     <div id="full">
-      <a href="#/"><h1>Median</h1></a>
+      <a href="#/"><img src="http://f.cl.ly/items/1g353d1J1s183G2R2g3M/median%20logo%20for%20web.png" /></a>
       <div id="blogPosts"></div>
 
       <aside>
@@ -34,9 +36,9 @@
       <br>
       <button id="logOut">Logout</button>
       <br>
-      <a href="#/" class="add_btn"><button>home</button></a>
+      <a href="#/" class="add_btn"><button>Home</button></a>
       <br>
-      <a href="#/add" class="add_btn"><button>add post</button></a>
+      <a href="#/add" class="add_btn"><button>Add Post</button></a>
       <br>
       <a href="#/signup" class="signup_btn"><button>Sign Up</button></a>
       <br>
@@ -87,14 +89,22 @@
 </script>
 
 
+<script type="text/template" id="commentTemp">
+      <li><%= commentText %></li>
+    </script>
+
+
 <script type="text/template" id='read-blog-posts'>
   <li class='read_blog_posts' id='<%= objectId %>'>
-    <a href='<%= objectId %>'>
+
       <div class="header"><%= title %> by <%= author %></div>
       <div class="content"><%= content %></div>
       <div class="tags"><%= tags %></div>
 
-    </a>
+  <form id="addComment">
+          <textarea id="commentText" placeholder="Add Your Comments"></textarea>
+          <button>Add Comment</button>
+        </form>
   </li>
 </script>
 

@@ -4,7 +4,9 @@
     tagName: 'ul',
     className: 'public_published',
 
-    events: {},
+    events: {
+      'submit #commentText' : 'addComment'
+    },
 
     template: _.template($('#public-blog-posts').html()),
 
@@ -47,13 +49,43 @@
 
     return this;
 
-  }
 
 
 
+  var commentTemplate = _.template($('#commentTemp').html());
+      var comments_query = new Parse.Query(App.Models.Comment);
+      comments_query.equalTo('parent', this.options.post);
 
+      this.$el.append('<h2>Comments</h2><ul class="comments"></ul>');
 
+      comments_query.find({
+        success: function (results) {
 
+          _.each(results, function(comment) {
+            $('ul.comments').append(commentTemplate(comment.toJSON()));
+          })
+
+        }
+      })
+
+    },
+
+    addComment: function (e) {
+      e.preventDefault();
+
+      var comment = new App.Models.Comment({
+
+        commentText: $('#commentText').val(),
+        parent: this.options.post
+
+      });
+
+      comment.save(null, {
+        success: function () {
+          console.log('Comment has been added');
+          App.router.navigate('', {trigger: true});
+        }
+      });
+    },
   });
-
 }());
