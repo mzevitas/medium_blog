@@ -61,6 +61,9 @@ body {
       width: 60%;
       border: none;
     }
+    #postDraft {
+      display: none;
+    }
   }
 
 .public_blog_posts, .blog_posts {
@@ -86,6 +89,13 @@ body {
   .tags{
     display: inline-block;
     margin: 3px 0 5px 0;
+    width: 75%;
+  }
+  .draft {
+    display: inline-block;
+    float: right;
+    color: red;
+    font-weight: bolder;
   }
 }
 
@@ -107,7 +117,7 @@ aside {
   border-radius: 7px;
   text-shadow: 1px 1px 1px 1px white;
   outline: none;
-  
+
   &:hover {
     background-color: hsla(24,56%,52%,1);
     color: white;

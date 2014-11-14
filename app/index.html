@@ -55,6 +55,7 @@
     <input type="text" id="postAuthor" placeholder="Author" />
     <textarea id="postContent" placeholder="What's on your mind?"></textarea>
     <input type="text" id="postTag" placeholder="Add Tag" /><br>
+    <input type="text" id="postDraft" value="DRAFT" />
     <button id="publish-post">Publish Post</button>
     <button id="save-draft">Save Draft</button>
   </form>
@@ -80,6 +81,7 @@
       <div class="content"><%= content %></div>
       <div class="rating"><%= ratings %></div>
       <div class="tags"><%= tags %></div>
+      <div class="draft"><%= draft %></div>
     </a>
   </li>
 </script>

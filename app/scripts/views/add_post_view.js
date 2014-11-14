@@ -32,6 +32,7 @@
             author: $('#postAuthor').val(),
             content: $('#postContent').val(),
             tags: $('#postTag').val(),
+            draft: $('#postDraft').val(),
             user: App.user
           });
 
@@ -52,6 +53,7 @@
            author: $('#postAuthor').val(),
            content: $('#postContent').val(),
            tags: $('#postTag').val(),
+           draft: $('#postDraft').val(),
            user: App.user
          });
 
@@ -61,6 +63,7 @@
              App.router.navigate('profile', { trigger: true });
            }
          });
+
        }
   });
 }());

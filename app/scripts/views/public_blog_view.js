@@ -26,7 +26,6 @@
     var self = this;
 
     var all_post = new Parse.Query(App.Models.Blog);
-    // all_post.equalTo('publish-post', 'addPost');
 
     all_post.find({
       success: function (results) {
