@@ -54,6 +54,7 @@
     <input type="text" id="postTitle" placeholder="Title" />
     <input type="text" id="postAuthor" placeholder="Author" />
     <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+    <div id="empty-box"></div>
     <!--<input type="text" id="postTag" placeholder="Add Tag" />-->
     <select id="postTag" placeholder="Add Tag">
       <option value="" default selected>Add Tag</option><option value="Alcohol">Alcohol</option><option value="Animals">Animals</option><option value="Automotive">Automotive</option><option value="Business">Business</option><option value="Career">Career</option><option value="Design">Design</option><option value="DIY">DIY</option><option value="Electronics">Electronics</option><option value="Entertainment">Entertainment</option><option value="Finance">Finance</option><option value="Food">Food</option><option value="Gaming">Gaming</option><option value="Health">Health</option><option value="Law">Law</option><option value="Lifestyle">Lifestyle</option><option value="Medical">Medical</option><option value="Movie">Movie</option><option value="Music">Music</option><option value="Nature">Nature</option><option value="Parenting">Parenting</option><option value="Pet">Pet</option><option value="Photography">Photography</option><option value="Political">Political</option><option value="Real">Real Estate</option><option value="Science">Science</option><option value="Shopping">Shopping</option><option value="Socia<option value="Technology">Technology</option><option value="Travel">Travel</option><option value="University">University</option><option value="Wedding">Wedding</option>
@@ -121,7 +122,10 @@
       <input type="text" value="<%= title %>" id="update_title" placeholder="Title">
       <input type="text" value="<%= author %>" id="update_author">
       <textarea id="update_content"><%= content %></textarea>
-      <input type="text" value="<%= tags %>" id="update_tag">
+      <div id="empty-box"></div>
+      <select id="update_tag" value="<%= tags %>">
+        <option value="" default selected>Add Tag</option><option value="Alcohol">Alcohol</option><option value="Animals">Animals</option><option value="Automotive">Automotive</option><option value="Business">Business</option><option value="Career">Career</option><option value="Design">Design</option><option value="DIY">DIY</option><option value="Electronics">Electronics</option><option value="Entertainment">Entertainment</option><option value="Finance">Finance</option><option value="Food">Food</option><option value="Gaming">Gaming</option><option value="Health">Health</option><option value="Law">Law</option><option value="Lifestyle">Lifestyle</option><option value="Medical">Medical</option><option value="Movie">Movie</option><option value="Music">Music</option><option value="Nature">Nature</option><option value="Parenting">Parenting</option><option value="Pet">Pet</option><option value="Photography">Photography</option><option value="Political">Political</option><option value="Real">Real Estate</option><option value="Science">Science</option><option value="Shopping">Shopping</option><option value="Socia<option value="Technology">Technology</option><option value="Travel">Travel</option><option value="University">University</option><option value="Wedding">Wedding</option>
+      </select><br>
       <button id="update_btn">Update Post</button>
       <button id="delete">Delete Post</button>
     </form>
