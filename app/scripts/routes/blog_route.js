@@ -11,15 +11,16 @@
       'signup' : 'userSignUp',
       'edit/:postID' : 'editPost',
       'read/:postID' : 'readPost',
-      'save/:postID' : 'saveDraft'
+      'save/:postID' : 'saveDraft',
+      'sort/:sortby' : 'home'
 
 
 
     },
 
-    home: function (){
+    home: function (sortby){
 
-      new App.Views.PublicPost({ collection: App.posts});
+      new App.Views.PublicPost({ collection: App.posts, sort: sortby });
     },
 
     profile: function (){
@@ -52,7 +53,7 @@
 
     },
 
-    saveDraft: function () {
+    saveDraft: function (postID) {
       if(!App.user) return App.router.navigate('profile', { trigger: true});
 
       // new App.Views.AddPost();

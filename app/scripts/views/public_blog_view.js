@@ -51,6 +51,15 @@
     this.$el.empty();
 
     var local_collection = this.collection;
+  if(this.options.sort != undefined) {
+    local_collection = _.sortBy(this.collection, function (model) {
+      return model[self.options.sort];
+    });
+  } else {
+    local_collection = _.sortBy(this.collection, function (model) {
+      return -parseInt(model.title);
+    });
+  }
 
     _.each(local_collection, function (p) {
       self.$el.append(self.template(p.toJSON()));
