@@ -53,7 +53,7 @@
     var local_collection = this.collection;
   if(this.options.sort != undefined) {
     local_collection = _.sortBy(this.collection, function (model) {
-      return model[self.options.sort];
+      return model.get(self.options.sort);
     });
   } else {
     local_collection = _.sortBy(this.collection, function (model) {
