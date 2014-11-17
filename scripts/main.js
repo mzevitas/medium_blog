@@ -10,12 +10,32 @@
       author: '',
       content: '',
       tags: '',
-      comments: '',
-      ratings: ''
+      draft: '',
+      user: ''
     },
 
     initialize: function (){
-      var b = this.get('title');
+      // var b = this.get('title');
+    }
+
+  });
+
+}());
+
+(function () {
+
+  App.Models.Comment = Parse.Object.extend({
+
+    className: 'Comments',
+    idAttribute: 'objectId',
+
+    defaults: {
+    comments: ''
+
+    },
+
+    initialize: function (){
+      // var f = this.get('comments');
     }
 
   });
@@ -41,34 +61,54 @@
       'add' : 'addPost',
       'login' : 'userLogin',
       'signup' : 'userSignUp',
-      'edit/:postID' : 'editPost'
+      'edit/:postID' : 'editPost',
+      'read/:postID' : 'readPost',
+      'save/:postID' : 'saveDraft',
+      'sort/:sortby' : 'home'
+
 
 
     },
 
-    home: function (){
+    home: function (sortby){
 
-      new App.Views.PublicPost({ collection: App.posts});
+      new App.Views.PublicPost({ collection: App.posts, sort: sortby });
     },
 
     profile: function (){
+
+      if(!App.user) return App.router.navigate('login', { trigger: true});
 
       new App.Views.ProfileView({ collection: App.posts });
     },
 
     editPost: function (postID) {
 
-    if(!App.user) return App.router.navigate('login', { trigger: true});
+      if(!App.user) return App.router.navigate('login', { trigger: true});
 
-    var p = App.posts.get(postID);
-    new App.Views.SinglePost({ post: p });
+      var p = App.posts.get(postID);
+      new App.Views.SinglePost({ post: p });
+
+    },
+    readPost: function (postID) {
+      // if(!App.user) return App.router.navigate('read', { trigger: true});
+
+      var p = App.posts.get(postID);
+      new App.Views.ReadPost({ post: p });
 
     },
 
     addPost: function () {
-      // if(!App.user) return App.router.navigate('login', { trigger: true});
+      if(!App.user) return App.router.navigate('login', { trigger: true});
 
       new App.Views.AddPost();
+
+    },
+
+    saveDraft: function (postID) {
+      if(!App.user) return App.router.navigate('profile', { trigger: true});
+
+      // new App.Views.AddPost();
 
     },
 
@@ -97,7 +137,9 @@
     tagName: 'ul',
     className: 'public_published',
 
-    events: {},
+    events: {
+
+    },
 
     template: _.template($('#public-blog-posts').html()),
 
@@ -117,13 +159,22 @@
     var self = this;
 
     var all_post = new Parse.Query(App.Models.Blog);
-  
+    all_post.notEqualTo("draft", "DRAFT");
+
+    // if (all_post == "DRAFT") {
+    //   ('li').hide();
+    // }
+    // else {
+    //     ('li').show();
+    //   }
+
     all_post.find({
       success: function (results) {
         self.collection = results;
         self.render();
       }
     });
+
 
   },
 
@@ -133,6 +184,15 @@
     this.$el.empty();
 
     var local_collection = this.collection;
+  if(this.options.sort != undefined) {
+    local_collection = _.sortBy(this.collection, function (model) {
+      return model.get(self.options.sort);
+    });
+  } else {
+    local_collection = _.sortBy(this.collection, function (model) {
+      return -parseInt(model.title);
+    });
+  }
 
     _.each(local_collection, function (p) {
       self.$el.append(self.template(p.toJSON()));
@@ -140,15 +200,9 @@
 
     return this;
 
-  }
-
-
-
-
-
+}
 
   });
-
 }());
 
 (function () {
@@ -212,7 +266,8 @@
   App.Views.AddPost = Parse.View.extend ({
 
       events: {
-        'click #publish-post' : 'addPost'
+        'click #publish-post' : 'addPost',
+        'click #save-draft' : 'saveDraft'
       },
 
       template: _.template($('#create-post').html()),
@@ -222,8 +277,7 @@
 
         $('#blogPosts').html(this.$el);
 
-
-        // $('#postContent').autosize();
+        $('textarea').autosize();
       },
 
       render: function () {
@@ -241,6 +295,7 @@
             author: $('#postAuthor').val(),
             content: $('#postContent').val(),
             tags: $('#postTag').val(),
+            // draft: $('#postDraft').val(),
             user: App.user
           });
 
@@ -251,7 +306,28 @@
             }
           });
 
-       }
+       },
+
+       saveDraft: function (e) {
+         e.preventDefault();
+
+         var p = new App.Models.Blog({
+           title: $('#postTitle').val(),
+           author: $('#postAuthor').val(),
+           content: $('#postContent').val(),
+           tags: $('#postTag').val(),
+           draft: $('#postDraft').val(),
+           user: App.user
+         });
+
+         p.save(null, {
+           success: function () {
+             App.posts.add(p);
+             App.router.navigate('profile', { trigger: true });
+           }
+         });
+
+      }
   });
 }());
 
@@ -265,6 +341,7 @@
     events: {
 
       'submit #editPost' : 'editPost',
+      'click #delete' : 'deletePost'
 
     },
 
@@ -275,9 +352,11 @@
 
       this.render();
 
-      // $('').empty();
+      // $('#blogForm').empty();
 
       $('#blogPosts').html(this.$el);
+
+      $('textarea').autosize();
 
     },
 
@@ -292,15 +371,24 @@
 
       this.options.post.set({
         title: $('#update_title').val(),
+        author: $('#update_author').val(),
         content: $('#update_content').val(),
-        tags: $('#update_tags').val()
+        tags: $('#update_tag').val()
 
       });
 
       this.options.post.save();
 
-      App.router.navigate('', { trigger: true});
+      App.router.navigate('profile', { trigger: true});
 
+    },
+
+    deletePost: function (e) {
+      e.preventDefault();
+
+      this.options.post.destroy();
+
+      App.router.navigate('profile', { trigger: true});
     }
 
 
@@ -308,6 +396,87 @@
   });
 
 
+}());
+
+(function () {
+
+  App.Views.ReadPost = Parse.View.extend({
+
+    tagName: 'ul',
+    className: 'readPost',
+
+    events: {
+
+      // 'submit #readPost' : 'readPost',
+      'submit #addComment' : 'addComment'
+
+
+    },
+
+    template: _.template($('#read-blog-posts').html()),
+
+    initialize: function (options) {
+      this.options = options;
+
+      this.render();
+
+      // $('#blogForm').empty();
+
+      $('#blogPosts').html(this.$el);
+
+    },
+
+    render: function () {
+      this.$el.empty();
+
+      this.$el.html(this.template(this.options.post.toJSON()));
+
+
+
+
+  var commentTemplate = _.template($('#commentTemp').html());
+      var comments_query = new Parse.Query(App.Models.Comment);
+      comments_query.equalTo('parent', this.options.post);
+
+      this.$el.append('<h2>Comments</h2><ul class="comments"></ul>');
+
+      comments_query.find({
+        success: function (results) {
+
+          _.each(results, function(comment) {
+            $('ul.comments').append(commentTemplate(comment.toJSON()));
+          })
+
+        }
+      })
+
+    },
+
+    addComment: function (e) {
+      e.preventDefault();
+
+      var comment = new App.Models.Comment({
+
+        commentText: $('#commentText').val(),
+         parent: this.options.post
+
+      });
+
+      comment.save(null, {
+
+        success: function () {
+
+
+          // App.router.navigate('read/:postID', {trigger: true});
+            $('#addComment')[0].reset();
+            // location.reload();
+
+        }
+
+      });
+          this.render();
+    }
+  });
 }());
 
 (function () {
@@ -453,5 +622,16 @@ Parse.initialize("987y8DiFXRHgSkRnchrmgg5tKs0k4vfuj8SG5Qzj", "9Ordnpe294Dr1uzZ14
     $('#loggedIn').html(currUsr);
   };
   App.updateUser();
+
+  $(document).ready(function(){
+  $(".dropdown-button").click(function(){
+    $(".menu").toggleClass("show-menu");
+    $(".menu > a").click(function(){
+      $(".dropdown-button").html($(this).html());
+      $(".menu").removeClass("show-menu");
+    });
+  });
+});
+
 
 }());

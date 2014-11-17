@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="styles/vendor.css">
 
+    <link href='http://fonts.googleapis.com/css?family=Exo+2:700,300italic,200,900italic,500italic,800,300,600italic,500,800italic,900,100italic,200italic,600,700italic,400,100,400italic' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="styles/main.css">
 
     <script src="scripts/vendor/modernizr.js"></script>
@@ -18,65 +20,117 @@
 
 
     <div id="full">
+      <a href="#/"><img src="http://f.cl.ly/items/1g353d1J1s183G2R2g3M/median%20logo%20for%20web.png" /></a>
+      <div class="dropdown">
+        <div class="dropdown-container">
+          <!-- <p class="dropdown-description">Sort By:</p> -->
+          <p class="dropdown-button">Sort By:</p>
+          <ul class="menu">
+            <a href="#/sort/title"><li>Title</li></a>
+            <a href="#/sort/author"><li>Author</li></a>
+            <a href="#/sort/tags"><li>Tag</li></a>
+          </ul>
+        </div>
+      </div>
+      <div id="blogPosts"></div>
+
+      <aside>
       <span id="loggedIn"></span>
+      <br>
       <button id="logOut">Logout</button>
-      <a href="#/" class="add_btn"><button>home</button></a>
-      <a href="#/add" class="add_btn"><button>add post</button></a>
+      <br>
+      <a href="#/" class="add_btn"><button>Home</button></a>
+      <br>
+      <a href="#/add" class="add_btn"><button>Add Post</button></a>
+      <br>
       <a href="#/signup" class="signup_btn"><button>Sign Up</button></a>
+      <br>
       <a href="#/profile" class="nav_profile"><button>My Profile</button></a>
       <!-- <a href="#/login" class="login_btn"><button>Login</button></a> -->
-      <a href="#/"><h1>Median</h1></a>
-      <div id="blogPosts"></div>
+    </aside>
     </div>
 
 
 
 <script type="text/template" id="create-post">
-
   <form id="addPost">
     <input type="text" id="postTitle" placeholder="Title" />
     <input type="text" id="postAuthor" placeholder="Author" />
     <textarea id="postContent" placeholder="What's on your mind?"></textarea>
-    <input type="text" id="postTag" placeholder="Add Tag" /><br>
+    <div id="empty-box"></div>
+    <!--<input type="text" id="postTag" placeholder="Add Tag" />-->
+    <select id="postTag" placeholder="Add Tag">
+      <option value="" default selected>Add Tag</option><option value="Alcohol">Alcohol</option><option value="Animals">Animals</option><option value="Automotive">Automotive</option><option value="Business">Business</option><option value="Career">Career</option><option value="Design">Design</option><option value="DIY">DIY</option><option value="Electronics">Electronics</option><option value="Entertainment">Entertainment</option><option value="Finance">Finance</option><option value="Food">Food</option><option value="Gaming">Gaming</option><option value="Health">Health</option><option value="Law">Law</option><option value="Lifestyle">Lifestyle</option><option value="Medical">Medical</option><option value="Movie">Movie</option><option value="Music">Music</option><option value="Nature">Nature</option><option value="Parenting">Parenting</option><option value="Pet">Pet</option><option value="Photography">Photography</option><option value="Political">Political</option><option value="Real">Real Estate</option><option value="Science">Science</option><option value="Shopping">Shopping</option><option value="Technology">Technology</option><option value="Travel">Travel</option><option value="University">University</option><option value="Wedding">Wedding</option>
+    </select><br>
+    <input type="text" id="postDraft" value="DRAFT" />
     <button id="publish-post">Publish Post</button>
     <button id="save-draft">Save Draft</button>
   </form>
 </script>
 
-
 <script type="text/template" id='public-blog-posts'>
   <li class='public_blog_posts' id='<%= objectId %>'>
-    <a href='<%= objectId %>'>
-      <div class="header"><%= title %> by <%= author %></div>
-
+    <a href='#/read/<%= objectId %>'>
+      <div class="header-title"><%= title %></div>
+      <div class="header-author"><%= author %></div>
       <div class="content"><%= content %></div>
-
-      <div class="rating"><%= ratings %></div>
       <div class="tags"><%= tags %></div>
+      <div class="draft"><%= draft %></div>
     </a>
   </li>
 </script>
 
 <script type="text/template" id='blog-posts'>
   <li class='blog_posts' id='<%= objectId %>'>
-    <a href='<%= objectId %>'>
-      <div class="header"><%= title %> by <%= author %></div>
-
+    <a href='#/edit/<%= objectId %>'>
+      <div class="header-title"><%= title %></div>
+      <div class="header-author"><%= author %></div>
       <div class="content"><%= content %></div>
-
-      <div class="rating"><%= ratings %></div>
       <div class="tags"><%= tags %></div>
+      <div class="draft"><%= draft %></div>
     </a>
   </li>
 </script>
 
+
+<script type="text/template" id="commentTemp">
+      <li><%= commentText %></li>
+    </script>
+
+<script type="text/template" id='read-blog-posts'>
+  <li class='read_blog_posts' id='<%= objectId %>'>
+    <div id='<%= objectId %>'>
+      <div class="header-title"><%= title %></div>
+      <div class="header-author"><%= author %></div>
+      <div class="content"><%= content %></div>
+      <div class="tags"><%= tags %></div>
+
+
+  <form id="addComment">
+          <textarea id="commentText" placeholder="Add Your Comments"></textarea>
+       <button>Add Comment</button>
+        </form>
+
+
+  </div>
+  </li>
+</script>
+
+
+
+
 <script type="text/template" id='single-posts'>
-  <li>
+  <li class='blog_posts' id='<%= objectId %>'>
     <form id="editPost">
-      <input type="text" value="<%= title %>" id="update_title">
-      <input type="text" value="<%= content %>" id="update_content">
-      <input type="text" value="<%= tags %>" id="update_tag">
+      <input type="text" value="<%= title %>" id="update_title" placeholder="Title">
+      <input type="text" value="<%= author %>" id="update_author">
+      <textarea id="update_content"><%= content %></textarea>
+      <div id="empty-box"></div>
+      <select id="update_tag" value="<%= tags %>">
+        <option value="" default selected>Add Tag</option><option value="Alcohol">Alcohol</option><option value="Animals">Animals</option><option value="Automotive">Automotive</option><option value="Business">Business</option><option value="Career">Career</option><option value="Design">Design</option><option value="DIY">DIY</option><option value="Electronics">Electronics</option><option value="Entertainment">Entertainment</option><option value="Finance">Finance</option><option value="Food">Food</option><option value="Gaming">Gaming</option><option value="Health">Health</option><option value="Law">Law</option><option value="Lifestyle">Lifestyle</option><option value="Medical">Medical</option><option value="Movie">Movie</option><option value="Music">Music</option><option value="Nature">Nature</option><option value="Parenting">Parenting</option><option value="Pet">Pet</option><option value="Photography">Photography</option><option value="Political">Political</option><option value="Real">Real Estate</option><option value="Science">Science</option><option value="Shopping">Shopping</option><option value="Technology">Technology</option><option value="Travel">Travel</option><option value="University">University</option><option value="Wedding">Wedding</option>
+      </select><br>
       <button id="update_btn">Update Post</button>
+      <button id="delete">Delete Post</button>
     </form>
   </li>
 </script>
@@ -84,7 +138,7 @@
 <script type="text/template" id='user-signup'>
   <form id="SignUp">
     <input id="signupName" type="text" placeholder="Enter User Name" />
-    <input id="signupPassword" type="text" placeholder="Enter Password" />
+    <input id="signupPassword" type="password" placeholder="Enter Password" />
     <button>Sign Up</button>
   </form>
 </script>
@@ -92,7 +146,7 @@
 <script type="text/template" id='user-form'>
   <form id="Login">
     <input id="userName" type="text" placeholder="Enter User Name" />
-    <input id="password" type="text" placeholder="Enter Password" />
+    <input id="password" type="password" placeholder="Enter Password" />
     <button>Log In</button>
   </form>
 </script>
