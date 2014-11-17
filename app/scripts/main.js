@@ -38,4 +38,15 @@ Parse.initialize("987y8DiFXRHgSkRnchrmgg5tKs0k4vfuj8SG5Qzj", "9Ordnpe294Dr1uzZ14
   };
   App.updateUser();
 
+  $(document).ready(function(){
+  $(".dropdown-button").click(function(){
+    $(".menu").toggleClass("show-menu");
+    $(".menu > a").click(function(){
+      $(".dropdown-button").html($(this).html());
+      $(".menu").removeClass("show-menu");
+    });
+  });
+});
+
+
 }());
