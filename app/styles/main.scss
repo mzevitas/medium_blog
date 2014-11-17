@@ -44,11 +44,16 @@ body {
       font-weight: bold;
       font-size: 25px;
       padding-bottom: 10px;
+      display: inline-block;
+      float: left;
     }
     #postAuthor, #update_author {
       border: none;
       outline: none;
       background-color: HSLA(0, 0%, 98%, 1);
+      float: right;
+      display: inline-block;
+      width: 39%;
     }
     #postContent, #update_content {
       float: left;
@@ -58,7 +63,7 @@ body {
       outline: none;
       background-color: HSLA(0, 0%, 98%, 1);
       height: 300px;
-      padding-left: 8.25%;
+      // padding-left: 8.25%;
     }
     #postTag, #update_tag {
       width: 60%;
