@@ -28,6 +28,7 @@ body {
   width: 60%;
   padding: 15px;
   margin-right: 170px;
+  margin-top: 30px;
   float: right;
   a {
     text-decoration: none;
@@ -46,6 +47,7 @@ body {
       padding-bottom: 10px;
       display: inline-block;
       float: left;
+      text-transform: capitalize;
     }
     #postAuthor, #update_author {
       border: none;
@@ -54,6 +56,7 @@ body {
       float: right;
       display: inline-block;
       width: 39%;
+      text-transform: capitalize;
     }
     #postContent, #update_content {
       float: left;
@@ -63,6 +66,7 @@ body {
       outline: none;
       background-color: HSLA(0, 0%, 98%, 1);
       height: 300px;
+      text-transform: capitalize;
       // padding-left: 8.25%;
     }
     #postTag, #update_tag {
@@ -70,6 +74,7 @@ body {
       border: none;
       outline: none;
       background-color: HSLA(0, 0%, 98%, 1);
+      text-transform: capitalize;
       // color: HSLA(0, 0%, 66%, 1);
     }
     #postDraft {
@@ -120,6 +125,7 @@ body {
 aside {
   width: 25%;
   float: left;
+  padding-left: 50px;
 }
 
 .header {
@@ -141,6 +147,11 @@ aside {
     color: white;
 
   }
+}
+
+#loggedIn {
+  padding-left: 25px;
+  text-transform: capitalize;
 }
 
 
